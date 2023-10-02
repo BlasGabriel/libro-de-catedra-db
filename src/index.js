@@ -28,8 +28,11 @@ const registro_entrada = require("./routes/registro_entrada");
 
 app.use(express.json());
 app.use(cors());
+app.get(
+  "/",
+)
 
-app.use(profesores);
+app.use("/",profesores);
 app.use(carreras);
 app.use(cursos);
 app.use(registro_salida);
