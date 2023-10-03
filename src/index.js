@@ -4,7 +4,7 @@ const cors = require("cors");
 const port = 3000;
 const sequelize_db = require("./db/db");
 const associations = require("./models/Associations");
-const profesores = require("./routes/profesores");
+// const profesores = require("./routes/profesores");
 const carreras = require("./routes/carreras");
 const registro_salida = require("./routes/registro_salida");
 const cursos = require("./routes/cursos");
@@ -27,12 +27,17 @@ const registro_entrada = require("./routes/registro_entrada");
 })();
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: '*',
+}));
 app.get("/", (req, res) => {
   res.send("Hello World!");
 })
 
-app.use(profesores);
+const profesores = require('./routes/profesores');
+app.use('/', profesores);
+// app.use(profesores);
 app.use(carreras);
 app.use(cursos);
 app.use(registro_salida);
