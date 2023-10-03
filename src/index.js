@@ -12,6 +12,8 @@ const unidades = require("./routes/unidades");
 const materias = require("./routes/materias");
 const temas = require("./routes/temas");
 const registro_entrada = require("./routes/registro_entrada");
+var router  = express.Router();
+
 
 
 
