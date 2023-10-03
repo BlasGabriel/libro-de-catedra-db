@@ -37,11 +37,11 @@ app.use(cors({
 }));
 
 router.get('/', function(req, res) {
-	res.estatus(200).send('Welcome to my first API REST deployed with Google cloud Platform!');
+	res.estatus(200).send({"message":'Welcome to my first API REST deployed with Google cloud Platform!'});
 });
 
 const profesores = require('./routes/profesores');
-app.use('/', profesores);
+app.use(profesores);
 // app.use(profesores);
 app.use(carreras);
 app.use(cursos);
