@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 })
 
-app.use("/",profesores);
+app.use(profesores);
 app.use(carreras);
 app.use(cursos);
 app.use(registro_salida);
