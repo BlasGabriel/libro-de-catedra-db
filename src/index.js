@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const port = 3000;
+// const port = 3000;
 const sequelize_db = require("./db/db");
 const associations = require("./models/Associations");
 // const profesores = require("./routes/profesores");
@@ -15,7 +15,9 @@ const registro_entrada = require("./routes/registro_entrada");
 const router = require("express").Router();
 
 
-
+port = process.env.PORT || 3000
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 (async () => {
   try {
@@ -35,7 +37,7 @@ app.use(cors({
 }));
 
 router.get('/', function(req, res) {
-	res.send('Welcome to my first API REST deployed with Google cloud Platform!');
+	res.estatus(200).send('Welcome to my first API REST deployed with Google cloud Platform!');
 });
 
 const profesores = require('./routes/profesores');
