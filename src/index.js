@@ -31,9 +31,10 @@ app.use(express.json());
 app.use(cors({
   origin: '*',
 }));
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-})
+
+router.get('/', function(req, res) {
+	res.send('Welcome to my first API REST deployed with Google cloud Platform!');
+});
 
 const profesores = require('./routes/profesores');
 app.use('/', profesores);
