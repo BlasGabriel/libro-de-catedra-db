@@ -28,9 +28,9 @@ const registro_entrada = require("./routes/registro_entrada");
 
 app.use(express.json());
 app.use(cors());
-app.get(
-  "/",
-)
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+})
 
 app.use("/",profesores);
 app.use(carreras);
