@@ -12,12 +12,13 @@ const unidades = require("./routes/unidades");
 const materias = require("./routes/materias");
 const temas = require("./routes/temas");
 const registro_entrada = require("./routes/registro_entrada");
+const RegistroProceso = require("./routes/RegistroProceso");
 const router = require("express").Router();
 
 
 port = process.env.PORT || 3000
 // app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(express.json());
+app.use(express.json());
 
 (async () => {
   try {
@@ -25,7 +26,7 @@ port = process.env.PORT || 3000
     await sequelize_db.sync();
     console.log("Connection has been established successfully.✅");
   } catch (error) {
-    console.log("Error connecting to the database:❌", error);
+      console.log("Error connecting to the database:❌", error);
     // throw new Error("Error connecting to the database:❌", error);
   }
 })();
@@ -43,6 +44,7 @@ router.get('/', function(req, res) {
 const profesores = require('./routes/profesores');
 app.use(profesores);
 // app.use(profesores);
+app.use(RegistroProceso);
 app.use(carreras);
 app.use(cursos);
 app.use(registro_salida);

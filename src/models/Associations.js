@@ -8,11 +8,21 @@ const Cursos = require("./Cursos");
 const Unidades = require("./Unidades");
 const Temas = require("./Temas");
 const RegistroEntrada = require("./RegistroEntrada");
+const RegistroProceso = require("./RegistroProceso");
 // const SeleccionesTemas = require("./SeleccionesTemas");
 // const SeleccionesUnidades = require("./SeleccionesUnidades");
 
 // --------------------------------------------------
 //Todas la asociacion entre las tablas
+// RegistroProceso-->Profesores
+
+RegistroProceso.belongsTo(Profesores, { foreignKey: "ID_Profesor" });
+Profesores.hasOne(RegistroProceso, { foreignKey: "ID_Profesor" });
+// RegistroProceso-->Profesores
+
+RegistroProceso.belongsTo(Profesores, { foreignKey: "ID_Profesor_Verificador" });
+Profesores.hasOne(RegistroProceso, { foreignKey: "ID_Profesor_Verificador" });
+
 // RegistroSalida-->Profesores
 
 RegistroSalida.belongsTo(Profesores, { foreignKey: "ID_Profesor" });

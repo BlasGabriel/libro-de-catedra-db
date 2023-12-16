@@ -15,7 +15,7 @@ const listar = async (req, res) => {
       where: {
         eliminado: false, // Solo seleccionar carreras no eliminadas
         anio: anio,
-        mes: mes
+        mes: mes,
       },
       include: [
         {
@@ -79,7 +79,7 @@ const listarUno = async (req, res) => {
         {
           model: Unidades,
           attributes: ["id", "Nombre_Unidad"],
-        //  attributes:{ exclude: ["SeleccionesUnidades"],}
+          //  attributes:{ exclude: ["SeleccionesUnidades"],}
         },
         {
           model: Temas,
@@ -99,6 +99,7 @@ const listarUno = async (req, res) => {
 
 const crear = async (req, res) => {
   const {
+    ClaseN,
     Observacion,
     Seleccion,
     ID_Materia,
@@ -107,10 +108,11 @@ const crear = async (req, res) => {
     ID_Curso,
     unidadeId,
     temaId,
+    
   } = req.body;
 
   //   Validación de datos
-  if ( !ID_Materia || !ID_Profesor || !ID_Carrera || !ID_Curso) {
+  if (!ID_Materia || !ID_Profesor || !ID_Carrera || !ID_Curso) {
     return res.status(400).json({
       message: "Faltan datos obligatorios. Asegúrese de proporcionar.",
     });
@@ -123,6 +125,9 @@ const crear = async (req, res) => {
       ID_Profesor,
       ID_Carrera,
       ID_Curso,
+      ClaseN,
+      Seleccion,
+      ClaseN
     });
 
     // Asocia el nuevo registro de entrada a los unidades seleccionados
@@ -143,8 +148,51 @@ const crear = async (req, res) => {
   }
 };
 
+const editar = async (req, res) => {
+  const { id } = req.params;
+  const {
+    Observacion,
+    FechaHoraSalida,
+    ObservacionSalida,
+    Seleccion,
+    ID_Materia,
+    ID_Profesor,
+    ID_Carrera,
+    ID_Curso,
+    unidadeId,
+    temaId,
+  } = req.body;
+
+  try {
+    const registro_entrada = await RegistroEntrada.findByPk(id);
+    if (!registro_entrada) {
+      return res.status(404).json({ message: "Registro no encontrado" });
+    }
+    // Actualiza los datos del registro de entrada
+    // registro_entrada.Observacion = Observacion;
+    registro_entrada.FechaHoraSalida = FechaHoraSalida;
+    registro_entrada.ObservacionSalida = ObservacionSalida;
+    // registro_entrada.Seleccion = Seleccion;
+    // registro_entrada.ID_Materia = ID_Materia;
+    // registro_entrada.ID_Profesor = ID_Profesor;
+    // registro_entrada.ID_Carrera = ID_Carrera;
+    // registro_entrada.ID_Curso = ID_Curso;
+    await registro_entrada.save();
+    
+    res.json({
+      message: "Registro actualizado exitosamente",
+      registro_entrada,
+    })
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al editar el Registro" });
+  }
+  
+}
+
 module.exports = {
   listar,
   listarUno,
   crear,
+  editar,
 };
