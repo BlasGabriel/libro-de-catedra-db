@@ -7,7 +7,7 @@ const listar = async (req, res) => {
       where: {
         eliminado: false, // Solo seleccionar registros no eliminados
       },
-      include: [
+      include: [ 
         {
           model: Profesores,
           attributes: ["id", "ci", "nombre", "apellido"],

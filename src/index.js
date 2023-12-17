@@ -26,7 +26,7 @@ app.use(express.json());
     await sequelize_db.sync();
     console.log("Connection has been established successfully.✅");
   } catch (error) {
-      console.log("Error connecting to the database:❌", error);
+      // console.log("Error connecting to the database:❌", error);
     // throw new Error("Error connecting to the database:❌", error);
   }
 })();
