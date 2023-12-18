@@ -13,6 +13,7 @@ const materias = require("./routes/materias");
 const temas = require("./routes/temas");
 const registro_entrada = require("./routes/registro_entrada");
 const RegistroProceso = require("./routes/RegistroProceso");
+const RegistroProcesoAnual = require("./routes/RegistroProcesoAnual");
 const router = require("express").Router();
 
 
@@ -44,6 +45,7 @@ router.get('/', function(req, res) {
 const profesores = require('./routes/profesores');
 app.use(profesores);
 // app.use(profesores);
+app.use(RegistroProcesoAnual);
 app.use(RegistroProceso);
 app.use(carreras);
 app.use(cursos);

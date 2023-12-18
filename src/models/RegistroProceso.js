@@ -24,18 +24,18 @@ const RegistroProceso = sequelize_db.define("registro_proceso", {
     // allowNull: false,
     // defaultValue: sequelize_db.Sequelize.literal('CURRENT_TIMESTAMP'),
   },
-  HoraSalida: {
-    type: sequelize_db.Sequelize.INTEGER,
-    // allowNull: false,
-    // defaultValue: sequelize_db.Sequelize.literal('CURRENT_TIMESTAMP'),
-  },
+  // HoraSalida: {
+  //   type: sequelize_db.Sequelize.INTEGER,
+  //   // allowNull: false,
+  //   // defaultValue: sequelize_db.Sequelize.literal('CURRENT_TIMESTAMP'),
+  // },
   HorasPracticas: {
-    type: sequelize_db.Sequelize.INTEGER,
+    type: sequelize_db.Sequelize.STRING,
     // allowNull: false,
     // defaultValue: sequelize_db.Sequelize.literal('CURRENT_TIMESTAMP'),
   },
   HoraClase: {
-    type: sequelize_db.Sequelize.INTEGER,
+    type: sequelize_db.Sequelize.STRING,
     // allowNull: false,
   },
   EsGrupal: {
@@ -148,11 +148,11 @@ const RegistroProceso = sequelize_db.define("registro_proceso", {
     defaultValue: false,
   },
   ContenidoDesarrollado: {
-type: sequelize_db.Sequelize.STRING,
+    type: sequelize_db.Sequelize.STRING,
   },
   ActividadesRetroalimentcion: {
-type: sequelize_db.Sequelize.STRING,
-  }
+    type: sequelize_db.Sequelize.STRING,
+  },
 });
 
 module.exports = RegistroProceso;

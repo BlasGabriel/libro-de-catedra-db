@@ -7,12 +7,12 @@ const listar = async (req, res) => {
       where: {
         eliminado: false, // Solo seleccionar registros no eliminados
       },
-      include: [ 
+      include: [
         {
           model: Profesores,
           attributes: ["id", "ci", "nombre", "apellido"],
-        }
-      ]
+        },
+      ],
     });
     res.json(data);
   } catch (error) {
@@ -87,13 +87,18 @@ const crear = async (req, res) => {
     EsRubrica,
     EsEscala,
     EsListaConsejos,
+    Unidad_Desarrollada,
+    EsPruebaPractica,
+    ContenidoDesarrollado,
+    ActividadesRetroalimentcion,
+    ID_Profesor,
   } = req.body;
 
   try {
     const data = await RegistroProceso.create({
       ClaseNumero,
       fecha,
-      SegundoControl,
+      // SegundoControl,
       HoraEntrada,
       HoraSalida,
       HorasPracticas,
@@ -117,6 +122,11 @@ const crear = async (req, res) => {
       EsRubrica,
       EsEscala,
       EsListaConsejos,
+      Unidad_Desarrollada,
+      EsPruebaPractica,
+      ContenidoDesarrollado,
+      ActividadesRetroalimentcion,
+      ID_Profesor,
     });
     res.status(201).json(data);
     // res.json(data);
@@ -126,8 +136,8 @@ const crear = async (req, res) => {
   }
 };
 module.exports = {
-    listar,
-    listarUno,
-    listarPorCI,
+  listar,
+  listarUno,
+  listarPorCI,
   crear,
 };
