@@ -1,7 +1,7 @@
-const Unidades = require("../models/Unidades");
 const Temas = require("../models/Temas");
 const RegistroEntrada = require("../models/RegistroEntrada");
 const Profesores = require("../models/Profesores");
+const Unidades = require("../models/Unidades");
 const Carreras = require("../models/Carreras");
 const Materias = require("../models/Materias");
 const Cursos = require("../models/Cursos");
@@ -112,11 +112,11 @@ const crear = async (req, res) => {
   } = req.body;
 
   //   Validación de datos
-  if (!ID_Materia || !ID_Profesor || !ID_Carrera || !ID_Curso) {
-    return res.status(400).json({
-      message: "Faltan datos obligatorios. Asegúrese de proporcionar.",
-    });
-  }
+  // if (!ID_Materia || !ID_Profesor || !ID_Carrera || !ID_Curso) {
+  //   return res.status(400).json({
+  //     message: "Faltan datos obligatorios. Asegúrese de proporcionar.",
+  //   });
+  // }
   try {
     const registro_entrada = await RegistroEntrada.create({
       Observacion,

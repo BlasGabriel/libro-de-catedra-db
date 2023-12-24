@@ -28,6 +28,26 @@ Profesores.hasOne(RegistroProceso, { foreignKey: "ID_Profesor" });
 RegistroProceso.belongsTo(Profesores, { foreignKey: "ID_Profesor_Verificador" });
 Profesores.hasOne(RegistroProceso, { foreignKey: "ID_Profesor_Verificador" });
 
+// RegistroProceso-->Carreras
+RegistroProceso.belongsTo(Carreras, { foreignKey: "ID_Carrera" });
+Carreras.hasOne(RegistroProceso, { foreignKey: "ID_Carrera" });
+// RegistroProceso-->Cursos
+RegistroProceso.belongsTo(Cursos, { foreignKey: "ID_Curso" });
+Cursos.hasOne(RegistroProceso, { foreignKey: "ID_Curso" });
+// RegistroProceso-->Materias
+RegistroProceso.belongsTo(Materias, { foreignKey: "ID_Materia" });
+Materias.hasOne(RegistroProceso, { foreignKey: "ID_Materia" });
+
+//muchos a muchos
+RegistroProceso.belongsToMany(Unidades, {
+  through: "SeleccionesUnidades",
+});
+Unidades.belongsToMany(RegistroProceso, {
+  through: "SeleccionesUnidades",
+})
+
+
+
 // RegistroSalida-->Profesores
 
 RegistroSalida.belongsTo(Profesores, { foreignKey: "ID_Profesor" });
@@ -61,20 +81,20 @@ Materias.hasOne(RegistroEntrada, { foreignKey: "ID_Materia" });
 RegistroEntrada.belongsTo(Profesores, { foreignKey: "ID_Profesor" });
 Profesores.hasOne(RegistroEntrada, { foreignKey: "ID_Profesor" });
 
-//muchos a muchos
-RegistroEntrada.belongsToMany(Unidades, {
-  through: "SeleccionesUnidades",
-});
-Unidades.belongsToMany(RegistroEntrada, {
-  through: "SeleccionesUnidades",
-})
-//muchos a muchos
-RegistroEntrada.belongsToMany(Temas, {
-  through: "SeleccionesTemas",
-})
-Temas.belongsToMany(RegistroEntrada, {
-  through: "SeleccionesTemas",
-})
+// //muchos a muchos
+// RegistroEntrada.belongsToMany(Unidades, {
+//   through: "SeleccionesUnidades",
+// });
+// Unidades.belongsToMany(RegistroEntrada, {
+//   through: "SeleccionesUnidades",
+// })
+// //muchos a muchos
+// RegistroEntrada.belongsToMany(Temas, {
+//   through: "SeleccionesTemas",
+// })
+// Temas.belongsToMany(RegistroEntrada, {
+//   through: "SeleccionesTemas",
+// })
 
 module.exports = {
   Profesores,
@@ -84,4 +104,7 @@ module.exports = {
   Cursos,
   Unidades,
   Temas,
+  RegistroEntrada,
+  RegistroProceso,
+  RegistroProcesoAnual,
 };

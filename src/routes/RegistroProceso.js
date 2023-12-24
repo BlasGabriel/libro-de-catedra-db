@@ -8,6 +8,6 @@ const {
 
 router.get("/registro_proceso/listar", listar);
 router.get("/registro_proceso/listar/:id", listarUno);
-router.get("/registro_proceso/listarPorCI/:ci", listarPorCI);
+router.get("/registro_proceso/listarPorCI/:ID_Profesor", listarPorCI);
 router.post("/registro_proceso/crear", crear);
 module.exports = router;

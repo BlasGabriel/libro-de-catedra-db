@@ -1,16 +1,48 @@
 const RegistroProceso = require("../models/RegistroProceso");
 const Profesores = require("../models/Profesores");
+const Unidades = require("../models/Unidades");
+const Carreras = require("../models/Carreras");
+const Materias = require("../models/Materias");
+const Cursos = require("../models/Cursos");
+
 
 const listar = async (req, res) => {
+  // const { anio, mes } = req.params; // Obtiene las fechas de inicio y fin desde la solicitud
+
   try {
     const data = await RegistroProceso.findAll({
       where: {
         eliminado: false, // Solo seleccionar registros no eliminados
+        // anio: anio,
+        // mes: mes,
       },
       include: [
         {
+          model: Unidades,
+          attributes: ["id", "Nombre_Unidad"],
+        },
+        {
+          model: Materias,
+          attributes: ["id", "Nombre_Materia"],
+        },
+        {
           model: Profesores,
+          // as: "ID_Profesr",
+          foreignKey: "ID_Profesor",
           attributes: ["id", "ci", "nombre", "apellido"],
+        },
+        // {
+        //   model: Profesores,
+        //   attributes: ["id", "ci", "nombre", "apellido"],
+        //   // as: "ID_Profesr",
+        // },
+        {
+          model: Carreras,
+          attributes: ["id", "Nombre_Carrera"],
+        },
+        {
+          model: Cursos,
+          attributes: ["id", "Nombre_Curso"],
         },
       ],
     });
@@ -41,11 +73,11 @@ const listarUno = async (req, res) => {
 };
 
 const listarPorCI = async (req, res) => {
-  const { CI } = req.params;
+  const { ID_Profesor } = req.params;
   try {
     const data = await RegistroProceso.findAll({
       where: {
-        CI,
+        ID_Profesor,
         eliminado: false, // Solo seleccionar registros no eliminados
       },
     });
@@ -63,7 +95,7 @@ const crear = async (req, res) => {
   const {
     ClaseNumero,
     fecha,
-    FechaControl,
+    Observacion,
     HoraEntrada,
     HoraSalida,
     HorasPracticas,
@@ -92,13 +124,20 @@ const crear = async (req, res) => {
     ContenidoDesarrollado,
     ActividadesRetroalimentcion,
     ID_Profesor,
+    ID_Materia,
+    Seleccion,
+    // Observacion,
+    ID_Carrera,
+    ID_Curso,
+    unidadeId,
+    Temas,
   } = req.body;
 
   try {
     const data = await RegistroProceso.create({
       ClaseNumero,
       fecha,
-      // SegundoControl,
+      Observacion,
       HoraEntrada,
       HoraSalida,
       HorasPracticas,
@@ -127,6 +166,13 @@ const crear = async (req, res) => {
       ContenidoDesarrollado,
       ActividadesRetroalimentcion,
       ID_Profesor,
+      ID_Materia,
+      Seleccion,
+      // Observacion,
+      ID_Carrera,
+      ID_Curso,
+      unidadeId,
+      Temas,
     });
     res.status(201).json(data);
     // res.json(data);
