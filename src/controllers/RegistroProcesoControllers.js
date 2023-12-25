@@ -181,9 +181,106 @@ const crear = async (req, res) => {
     res.status(500).json({ message: "Error al crear el registro" });
   }
 };
+const editar = async (req, res) => {
+  const { id } = req.params;
+  const {
+    ClaseNumero,
+    fecha,
+    Observacion,
+    HoraEntrada,
+    HoraSalida,
+    HorasPracticas,
+    HoraClase,
+    EsGrupal,
+    EsResolucion,
+    EsestudioCaso,
+    EsSeminario,
+    EsDemostacion,
+    EsExpositiva,
+    EsVideoTutorial,
+    EsAprendizajeProblema,
+    EsAprendizajeProyecto,
+    EsTaller,
+    EsInvestigacion,
+    EsExtension,
+    EsPruebaEscrita,
+    EsPruebaOral,
+    EsAnalisisTrabajo,
+    EsObservacionRegistro,
+    EsRubrica,
+    EsEscala,
+    EsListaConsejos,
+    Unidad_Desarrollada,
+    EsPruebaPractica,
+    ContenidoDesarrollado,
+    ActividadesRetroalimentcion,
+    ID_Profesor,
+    ID_Materia,
+    Seleccion,
+    // Observacion,
+    ID_Carrera,
+    ID_Curso,
+    unidadeId,
+    Temas,
+  } = req.body;
+
+  try {
+    const data = await RegistroProceso.findByPk(id);
+    if (!data) {
+      return res.status(404).json({ message: "Registro no encontrado" });
+    }
+
+    data.ClaseNumero = ClaseNumero;
+    data.fecha = fecha;
+    data.Observacion = Observacion;
+    data.HoraEntrada = HoraEntrada;
+    data.HoraSalida = HoraSalida;
+    data.HorasPracticas = HorasPracticas;
+    data.HoraClase = HoraClase;
+    data.EsGrupal = EsGrupal;
+    data.EsResolucion = EsResolucion;
+    data.EsestudioCaso = EsestudioCaso;
+    data.EsSeminario = EsSeminario;
+    data.EsDemostacion = EsDemostacion;
+    data.EsExpositiva = EsExpositiva;
+    data.EsVideoTutorial = EsVideoTutorial;
+    data.EsAprendizajeProblema = EsAprendizajeProblema;
+    data.EsAprendizajeProyecto = EsAprendizajeProyecto;
+    data.EsTaller = EsTaller;
+    data.EsInvestigacion = EsInvestigacion;
+    data.EsExtension = EsExtension;
+    data.EsPruebaEscrita = EsPruebaEscrita;
+    data.EsPruebaOral = EsPruebaOral;
+    data.EsAnalisisTrabajo = EsAnalisisTrabajo;
+    data.EsObservacionRegistro = EsObservacionRegistro;
+    data.EsRubrica = EsRubrica;
+    data.EsEscala = EsEscala;
+    data.EsListaConsejos = EsListaConsejos;
+    data.Unidad_Desarrollada = Unidad_Desarrollada;
+    data.EsPruebaPractica = EsPruebaPractica;
+    data.ContenidoDesarrollado = ContenidoDesarrollado;
+    data.ActividadesRetroalimentcion = ActividadesRetroalimentcion;
+    data.ID_Profesor = ID_Profesor;
+    data.ID_Materia = ID_Materia;
+    data.Seleccion = Seleccion;
+    // data.Observacion = Observacion;
+    data.ID_Carrera = ID_Carrera;
+    data.ID_Curso = ID_Curso;
+    data.unidadeId = unidadeId;
+    data.Temas = Temas;
+
+    await data.save();
+    res.status(200).json({ message: "Registro actualizado exitosamente", data });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al leer los registros" });
+  }
+}
 module.exports = {
   listar,
   listarUno,
   listarPorCI,
   crear,
+  editar,
 };
