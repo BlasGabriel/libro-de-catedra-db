@@ -4,8 +4,9 @@ const sequelize_db = new Sequelize("libro_de_catedra_db", "root", "mysql", {
   host: "localhost",
   // host: "containers-us-west-74.railway.app",
   dialect: "mysql",
-  // port: "7405",
+  port: "3306",
   // port: "8080",
+  // http://192.168.1.106/ 
   timezone: "-04:00", // Configura la zona horaria para Paraguay
 });
 

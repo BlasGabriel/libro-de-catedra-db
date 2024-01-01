@@ -133,7 +133,9 @@ const crear = async (req, res) => {
     Temas,
   } = req.body;
 
+  console.log("entro-----------------------------------------------------------------");
   try {
+    console.log(req.body);
     const data = await RegistroProceso.create({
       ClaseNumero,
       fecha,
@@ -165,20 +167,21 @@ const crear = async (req, res) => {
       EsPruebaPractica,
       ContenidoDesarrollado,
       ActividadesRetroalimentcion,
-      ID_Profesor,
-      ID_Materia,
+      ID_Profesor: ID_Profesor || null,
+      ID_Materia: ID_Materia || null,
       Seleccion,
       // Observacion,
-      ID_Carrera,
-      ID_Curso,
+      ID_Carrera: ID_Carrera || null,
+      ID_Curso: ID_Curso || null,
       unidadeId,
       Temas,
+    
     });
     res.status(201).json(data);
     // res.json(data);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error al crear el registro" });
+    res.status(500).json({ message: "Error al crear el registro", error });
   }
 };
 const editar = async (req, res) => {
@@ -225,6 +228,7 @@ const editar = async (req, res) => {
   } = req.body;
 
   try {
+    console.log(id);
     const data = await RegistroProceso.findByPk(id);
     if (!data) {
       return res.status(404).json({ message: "Registro no encontrado" });

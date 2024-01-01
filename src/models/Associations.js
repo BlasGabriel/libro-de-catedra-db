@@ -17,26 +17,50 @@ const RegistroProcesoAnual = require("./RegistroProcesoAnual");
 //Todas la asociacion entre las tablas
 // RegistroProcesoAnual-->Profesores
 
-RegistroProcesoAnual.belongsTo(Profesores, { foreignKey: "ID_Profesor" });
-Profesores.hasOne(RegistroProcesoAnual, { foreignKey: "ID_Profesor" });
+RegistroProcesoAnual.belongsTo(Profesores, {
+  foreignKey: "ID_Profesor",
+  allowNull: true,
+});
+Profesores.hasOne(RegistroProcesoAnual, {
+  foreignKey: "ID_Profesor",
+  allowNull: true,
+});
 // RegistroProceso-->Profesores
 
-RegistroProceso.belongsTo(Profesores, { foreignKey: "ID_Profesor" });
-Profesores.hasOne(RegistroProceso, { foreignKey: "ID_Profesor" });
+RegistroProceso.belongsTo(Profesores, {
+  foreignKey: "ID_Profesor",
+  allowNull: true,
+});
+Profesores.hasOne(RegistroProceso, {
+  foreignKey: "ID_Profesor",
+  allowNull: true,
+});
 // RegistroProceso-->Profesores
 
-RegistroProceso.belongsTo(Profesores, { foreignKey: "ID_Profesor_Verificador" });
-Profesores.hasOne(RegistroProceso, { foreignKey: "ID_Profesor_Verificador" });
+RegistroProceso.belongsTo(Profesores, {
+  foreignKey: "ID_Profesor_Verificador",
+  allowNull: true,
+});
+Profesores.hasOne(RegistroProceso, {
+  foreignKey: "ID_Profesor_Verificador",
+  allowNull: true,
+});
 
 // RegistroProceso-->Carreras
-RegistroProceso.belongsTo(Carreras, { foreignKey: "ID_Carrera" });
-Carreras.hasOne(RegistroProceso, { foreignKey: "ID_Carrera" });
+RegistroProceso.belongsTo(Carreras, {
+  foreignKey: "ID_Carrera",
+  allowNull: true,
+});           
+Carreras.hasOne(RegistroProceso, { foreignKey: "ID_Carrera", allowNull: true });
 // RegistroProceso-->Cursos
-RegistroProceso.belongsTo(Cursos, { foreignKey: "ID_Curso" });
-Cursos.hasOne(RegistroProceso, { foreignKey: "ID_Curso" });
+RegistroProceso.belongsTo(Cursos, { foreignKey: "ID_Curso", allowNull: true });
+Cursos.hasOne(RegistroProceso, { foreignKey: "ID_Curso", allowNull: true });
 // RegistroProceso-->Materias
-RegistroProceso.belongsTo(Materias, { foreignKey: "ID_Materia" });
-Materias.hasOne(RegistroProceso, { foreignKey: "ID_Materia" });
+RegistroProceso.belongsTo(Materias, {
+  foreignKey: "ID_Materia",
+  allowNull: true,
+});
+Materias.hasOne(RegistroProceso, { foreignKey: "ID_Materia", allowNull: true });
 
 //muchos a muchos
 RegistroProceso.belongsToMany(Unidades, {
@@ -44,9 +68,7 @@ RegistroProceso.belongsToMany(Unidades, {
 });
 Unidades.belongsToMany(RegistroProceso, {
   through: "SeleccionesUnidades",
-})
-
-
+});
 
 // RegistroSalida-->Profesores
 
