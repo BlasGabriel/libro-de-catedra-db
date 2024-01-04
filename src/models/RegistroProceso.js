@@ -67,6 +67,11 @@ const RegistroProceso = sequelize_db.define("registro_proceso", {
     // allowNull: false,
     defaultValue: false,
   },
+  EsAuxiliar: {
+    type: sequelize_db.Sequelize.BOOLEAN,
+    // allowNull: false,
+    defaultValue: false,
+  },
   EsestudioCaso: {
     type: sequelize_db.Sequelize.BOOLEAN,
     // allowNull: false,
@@ -157,10 +162,10 @@ const RegistroProceso = sequelize_db.define("registro_proceso", {
     allowNull: false,
     defaultValue: false,
   },
-  Unidad_Desarrollada: {
-    type: sequelize_db.Sequelize.STRING,
-    // allowNull: false,
-  },
+  // Unidad_Desarrollada: {
+  //   type: sequelize_db.Sequelize.STRING,
+  //   // allowNull: false,
+  // },
   EsPruebaPractica: {
     type: sequelize_db.Sequelize.BOOLEAN,
     // allowNull: false,

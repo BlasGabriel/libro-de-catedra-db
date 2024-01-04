@@ -35,16 +35,16 @@ Profesores.hasOne(RegistroProceso, {
   foreignKey: "ID_Profesor",
   allowNull: true,
 });
-// RegistroProceso-->Profesores
+// // RegistroProceso-->Profesores
 
-RegistroProceso.belongsTo(Profesores, {
-  foreignKey: "ID_Profesor_Verificador",
-  allowNull: true,
-});
-Profesores.hasOne(RegistroProceso, {
-  foreignKey: "ID_Profesor_Verificador",
-  allowNull: true,
-});
+// RegistroProceso.belongsTo(Profesores, {
+//   foreignKey: "ID_Profesor_Verificador",
+//   allowNull: true,
+// });
+// Profesores.hasOne(RegistroProceso, {
+//   foreignKey: "ID_Profesor_Verificador",
+//   allowNull: true,
+// });
 
 // RegistroProceso-->Carreras
 RegistroProceso.belongsTo(Carreras, {
@@ -72,8 +72,8 @@ Unidades.belongsToMany(RegistroProceso, {
 
 // RegistroSalida-->Profesores
 
-RegistroSalida.belongsTo(Profesores, { foreignKey: "ID_Profesor" });
-Profesores.hasOne(RegistroSalida, { foreignKey: "ID_Profesor" });
+// RegistroSalida.belongsTo(Profesores, { foreignKey: "ID_Profesor" });
+// Profesores.hasOne(RegistroSalida, { foreignKey: "ID_Profesor" });
 
 // Materias-->Carreras
 Materias.belongsTo(Carreras, { foreignKey: "ID_Carrera" });
@@ -87,21 +87,21 @@ Unidades.belongsTo(Materias, { foreignKey: "ID_Materia" });
 Materias.hasOne(Unidades, { foreignKey: "ID_Materia" });
 
 // Temas-->Unidades
-Temas.belongsTo(Unidades, { foreignKey: "ID_Unidad" });
-Unidades.hasOne(Temas, { foreignKey: "ID_Unidad" });
+// Temas.belongsTo(Unidades, { foreignKey: "ID_Unidad" });
+// Unidades.hasOne(Temas, { foreignKey: "ID_Unidad" });
 
 // RegistroEntrada-->Carreras
-RegistroEntrada.belongsTo(Carreras, { foreignKey: "ID_Carrera" });
-Carreras.hasOne(RegistroEntrada, { foreignKey: "ID_Carrera" });
-// RegistroEntrada-->Cursos
-RegistroEntrada.belongsTo(Cursos, { foreignKey: "ID_Curso" });
-Cursos.hasOne(RegistroEntrada, { foreignKey: "ID_Curso" });
-// RegistroEntrada-->Materias
-RegistroEntrada.belongsTo(Materias, { foreignKey: "ID_Materia" });
-Materias.hasOne(RegistroEntrada, { foreignKey: "ID_Materia" });
-// RegistroEntrada-->Profesores
-RegistroEntrada.belongsTo(Profesores, { foreignKey: "ID_Profesor" });
-Profesores.hasOne(RegistroEntrada, { foreignKey: "ID_Profesor" });
+// RegistroEntrada.belongsTo(Carreras, { foreignKey: "ID_Carrera" });
+// Carreras.hasOne(RegistroEntrada, { foreignKey: "ID_Carrera" });
+// // RegistroEntrada-->Cursos
+// RegistroEntrada.belongsTo(Cursos, { foreignKey: "ID_Curso" });
+// Cursos.hasOne(RegistroEntrada, { foreignKey: "ID_Curso" });
+// // RegistroEntrada-->Materias
+// RegistroEntrada.belongsTo(Materias, { foreignKey: "ID_Materia" });
+// Materias.hasOne(RegistroEntrada, { foreignKey: "ID_Materia" });
+// // RegistroEntrada-->Profesores
+// RegistroEntrada.belongsTo(Profesores, { foreignKey: "ID_Profesor" });
+// Profesores.hasOne(RegistroEntrada, { foreignKey: "ID_Profesor" });
 
 // //muchos a muchos
 // RegistroEntrada.belongsToMany(Unidades, {
@@ -117,7 +117,6 @@ Profesores.hasOne(RegistroEntrada, { foreignKey: "ID_Profesor" });
 // Temas.belongsToMany(RegistroEntrada, {
 //   through: "SeleccionesTemas",
 // })
-
 module.exports = {
   Profesores,
   RegistroSalida,

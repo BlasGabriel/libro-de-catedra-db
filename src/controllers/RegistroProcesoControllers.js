@@ -28,7 +28,7 @@ const listar = async (req, res) => {
         {
           model: Profesores,
           // as: "ID_Profesr",
-          foreignKey: "ID_Profesor",
+          // foreignKey: "ID_Profesor",
           attributes: ["id", "ci", "nombre", "apellido"],
         },
         // {
@@ -119,26 +119,29 @@ const crear = async (req, res) => {
     EsRubrica,
     EsEscala,
     EsListaConsejos,
-    Unidad_Desarrollada,
+    // Unidad_Desarrollada,
     EsPruebaPractica,
     ContenidoDesarrollado,
     ActividadesRetroalimentcion,
     ID_Profesor,
     ID_Materia,
     Seleccion,
-    // Observacion,
+    EsAuxiliar,
     ID_Carrera,
     ID_Curso,
-    unidadeId,
+    unidades,
     Temas,
   } = req.body;
 
   console.log("entro-----------------------------------------------------------------");
   try {
     console.log(req.body);
+
     const data = await RegistroProceso.create({
       ClaseNumero,
       fecha,
+      anio: fecha.split('-')[0],
+      mes: fecha.split('-')[1],
       Observacion,
       HoraEntrada,
       HoraSalida,
@@ -163,20 +166,24 @@ const crear = async (req, res) => {
       EsRubrica,
       EsEscala,
       EsListaConsejos,
-      Unidad_Desarrollada,
+      // Unidad_Desarrollada,
       EsPruebaPractica,
       ContenidoDesarrollado,
       ActividadesRetroalimentcion,
       ID_Profesor: ID_Profesor || null,
       ID_Materia: ID_Materia || null,
       Seleccion,
-      // Observacion,
+      EsAuxiliar,
       ID_Carrera: ID_Carrera || null,
       ID_Curso: ID_Curso || null,
-      unidadeId,
+      unidades,
       Temas,
     
     });
+      // Asocia el nuevo registro de entrada a los unidades seleccionados
+      if (unidades && unidades.length > 0) {
+        await data.setUnidades(unidades);
+      }
     res.status(201).json(data);
     // res.json(data);
   } catch (error) {
@@ -213,17 +220,17 @@ const editar = async (req, res) => {
     EsRubrica,
     EsEscala,
     EsListaConsejos,
-    Unidad_Desarrollada,
+    // Unidad_Desarrollada,
     EsPruebaPractica,
     ContenidoDesarrollado,
     ActividadesRetroalimentcion,
     ID_Profesor,
     ID_Materia,
     Seleccion,
-    // Observacion,
+    EsAuxiliar,
     ID_Carrera,
     ID_Curso,
-    unidadeId,
+    unidades,
     Temas,
   } = req.body;
 
@@ -233,9 +240,10 @@ const editar = async (req, res) => {
     if (!data) {
       return res.status(404).json({ message: "Registro no encontrado" });
     }
-
     data.ClaseNumero = ClaseNumero;
     data.fecha = fecha;
+    data.anio= fecha.split('-')[0];
+    data.mes= fecha.split('-')[1];
     data.Observacion = Observacion;
     data.HoraEntrada = HoraEntrada;
     data.HoraSalida = HoraSalida;
@@ -260,17 +268,17 @@ const editar = async (req, res) => {
     data.EsRubrica = EsRubrica;
     data.EsEscala = EsEscala;
     data.EsListaConsejos = EsListaConsejos;
-    data.Unidad_Desarrollada = Unidad_Desarrollada;
+    // data.Unidad_Desarrollada = Unidad_Desarrollada;
     data.EsPruebaPractica = EsPruebaPractica;
     data.ContenidoDesarrollado = ContenidoDesarrollado;
     data.ActividadesRetroalimentcion = ActividadesRetroalimentcion;
     data.ID_Profesor = ID_Profesor;
     data.ID_Materia = ID_Materia;
     data.Seleccion = Seleccion;
-    // data.Observacion = Observacion;
+    data.EsAuxiliar = EsAuxiliar;
     data.ID_Carrera = ID_Carrera;
     data.ID_Curso = ID_Curso;
-    data.unidadeId = unidadeId;
+    data.unidades = unidades;
     data.Temas = Temas;
 
     await data.save();
